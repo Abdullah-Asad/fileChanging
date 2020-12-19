@@ -18,9 +18,9 @@ app = Flask(__name__)
 
 
 
-# @app.route('/')
-# def home_endpoint():
-#     return 'Hello World!'
+@app.route('/')
+def home_endpoint():
+    return 'Hello World!'
 
 
 # @app.route('/predict', methods=['POST'])
