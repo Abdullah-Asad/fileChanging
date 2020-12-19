@@ -1,5 +1,5 @@
 import cv2
-import tensorflow as tf
+
 import numpy as np
 from flask import Flask, request
 
@@ -15,10 +15,7 @@ def prepare(file):
 app = Flask(__name__)
 
 
-def load_model():
-    global model
 
-    model = tf.keras.models.load_model("CNN.h5")
 
 
 @app.route('/')
@@ -36,13 +33,12 @@ def get_prediction():
         # image = cv2.imread('image.png', 0)
         preparedImage = prepare(image)
 
-        prediction = model.predict([preparedImage])
-        print("6")
-        prediction = list(prediction[0])
+#         prediction = model.predict([preparedImage])
+#         print("6")
+#         prediction = list(prediction[0])
 
-        return CATEGORIES[prediction.index(max(prediction))]
-
+        return [preparedImage]
 
 if __name__ == '__main__':
-    load_model()  
+    
     app.run(debug=True)
